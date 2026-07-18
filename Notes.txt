@@ -1,0 +1,53 @@
+
+FLOW PATH:
+----------
+CRUD operations --> Classes/Handling errors --> Database/ORM, Authentication JWT
+                                                          |
+                                                       Routing
+                                                          |
+                                                    DB & Data Migration
+                                                          |
+                                                    Unit testing (Pytest)
+                                                          |
+                                                    Full stack development
+                                                          |
+                                                     Deployment
+
+COURSE SOURCE CODE:
+-------------------
+https://github.com/codingwithroby/fastapi-the-complete-course.git
+
+
+- has built in UI to interact with APIs from browser
+Swagger UI - http://127.0.0.1:8000/docs
+ReDoc UI   - http://127.0.0.1:8000/redoc
+
+
+- starting the server
+fastapi dev main.py    # dev mode
+fastapi run main.py    # production mode
+
+
+==================== CRUD ======================================================
+
+PATH PARAMETERS:
+- are request parameters attached with URL
+http://127.0.0.1:8000/books/bookA
+
+QUERY PARAMETERS:
+- are request parameters attached after question mark (as name=value pair)
+- NOTE: Query parameter are not the part of route identity
+        ie. "/book" and "/book/" are two different path, but
+            "/book?category=science" and "/book?author=X"  are similar and has to
+             be handled in the same function
+http://127.0.0.1:8000/books?category=history
+
+
+- fastAPI looks from top to bottom to match the URL for picking the function to call
+
+Body()
+- specify explicitly --the function parameters value must fetched from
+    request body not from url path or query parameters
+
+
+======== Data Validation/Exception/Status code/Swagger/Request object ==========
