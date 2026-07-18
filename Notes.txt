@@ -50,4 +50,34 @@ Body()
     request body not from url path or query parameters
 
 
-======== Data Validation/Exception/Status code/Swagger/Request object ==========
+======== Data Validation/Exception/Status code/Request object ==================
+
+for GET -- to validate Path/Query parameter -->
+   Path parameter  -> use Path class  (imported from fastapi)
+   Query parameter -> use Query class
+   NOTE: Apply these classes to the function parameters
+for POST -- to validate request body --> use pydantic
+
+
+PYDANTIC:
+- used for data parsing, data validation, data serialization(json <-> py objects)
+- data received from POST request is validated using pydantic
+  STEPS:
+    - model creation -- similar to class object       (by inheriting BaseModel)
+    - in this model, add validation on each variables (using Fields)
+    - pass this model instead of Body() to parse the request body
+
+- use 'model_config', to populate default values in the 'Example Value' section (in UI)
+
+
+STATUS CODES:
+  1xx - information request
+  2xx - success
+  3xx - redirection
+  4xx - client side error
+  5xx - server side issue
+
+
+
+
+======== Database/Authentication/Authorization/Hashing password ================
