@@ -81,3 +81,38 @@ STATUS CODES:
 
 
 ======== Database/Authentication/Authorization/Hashing password ================
+
+- SQL (Structured Query Language) for dealing relational databases
+- start with sqllite -> mysql -> postgres
+
+SQLite CONFIGURATION STEPS (boilerplate code):
+ 1. specify path to the db
+ 2. create a global engine instance (will open connection & interact with db)
+ 3. create a SessionLocal, that binds with the engine
+ 4. create Base
+
+ - session local is a factory, for each request a new session will be created
+ - this base is inherited and ORM models are created
+ - using the ORM models, interaction will happen with db
+
+ - ORM models specify - structure of db tables along with column names & data
+
+ INSTALLATION OF SQLITE:
+ sudo dnf install sqlite sqlitebrowser
+
+ SQLITE QUERYS:
+ sqlite3 todo.db
+
+ > .schema                              # listout the columns and the data type
+ > insert into todo (title, description, priority) values ('shop', 'buy milk', 2
+ > select * from todo;
+
+ > .mode column                         # print output in tabular column format
+ > .mode markdown                       # print output in markdown table format
+
+ > delete from todo where title = 'shop'
+
+ TO ACCESS DB FROM ENDPOINT FUNCTIONS:
+   1. create get_db function to create new session and yeilds it
+   2. in every function parameter, wrap get_db function within Depends()
+   3. Depends() will call get_db, injects the return value & close db connection
