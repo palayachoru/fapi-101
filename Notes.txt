@@ -116,3 +116,30 @@ SQLite CONFIGURATION STEPS (boilerplate code):
    1. create get_db function to create new session and yeilds it
    2. in every function parameter, wrap get_db function within Depends()
    3. Depends() will call get_db, injects the return value & close db connection
+
+TODO TABLE:
+--------------------------------------------------------------------
+| ID (primary key) | Title | Description | Priority | Is_completed |
+--------------------------------------------------------------------
+
+
+
+======== Authentication/Authorization/Routing ==================================
+
+ROUTERS:
+- folder to place all the python files that contain API endpoint functions
+- use APIrouter class to create all API endpoints
+- in main.py include all routes
+
+ONE-TO-MANY RELATIONSHIP: a user may have many todos
+
+ESTABLISH ONE-2-MANY RELATIONSHIP B/W USER & TODO TABLE:
+USER TABLE:
+----------------------------------------------------------------------------
+| ID (primary key) | EMail | username | Name | Hashed_Password | Is_Active |
+----------------------------------------------------------------------------
+
+TODO TABLE:
+------------------------------------------------------------------------------------------
+| ID (primary key) | Title | Description | Priority | Is_completed | Owner (foreign key) |
+------------------------------------------------------------------------------------------
