@@ -1,2 +1,13 @@
 fastapi[standard]
+
 sqlalchemy
+
+# Hashing & Verify Password strings
+passlib
+bcrypt==4.0.1
+
+# OAuth Forms
+python-multipart
+
+# Creating JWT token
+python-jose[cryptography]

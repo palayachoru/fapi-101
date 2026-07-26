@@ -14,15 +14,21 @@ class User(Base):
   name = Column(String)
   hashed_passwd = Column(String)
   is_active = Column(Boolean, default=True)
-  role = Column(String)
+  is_admin = Column(Boolean, default=False)        # user is admin/normal user
 
 
 class UserRequest(BaseModel):
-  email: str = Field()
-  username: str
-  name: str
-  hashed_passwd: str
-  role: str
+  email: str
+  username: str = Field(min_length=3, max_length=10)
+  name: str = Field(min_length=3, max_length=20)
+  passwd: str
+  is_active: Optional[bool] = Field(default=True)
+  is_admin: bool = Field(default=False)
+
+
+class PasswordChangeRequest(BaseModel):
+  curr_password: str
+  new_password: str
 
 
 
@@ -50,10 +56,10 @@ class TodoRequest(BaseModel):
   model_config = {
     "json_schema_extra": {
       "example": {
-        "title": "Task title",
-        "description": "Detailed split up of task",
-        "priority": "Specify task priority",
-        "is_completed": "Is the task done"
+        "title": "Title",
+        "description": "Specification of task",
+        "priority": 2,
+        "is_completed": False
       }
     }
   }

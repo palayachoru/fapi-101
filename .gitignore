@@ -1,5 +1,6 @@
 .crud
 .stage_*
 todo.db
+todo_app.db
 
 __pycache__
