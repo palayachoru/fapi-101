@@ -202,3 +202,20 @@ router = APIRouter(
   prefix = "/todo",    # add prefix to all endpoints
   tags = ["Todo"]      # in swagger UI, endpoints are grouped under this name
 )
+
+
+
+=========================== MYSQL/POSTGERS DB ==================================
+
+
+
+
+==================== UNIT & INTEGRATION TESTING ================================
+UNIT TESTING:
+- test a feature/functional unit of a code
+
+INTEGRATION TESTING:
+- test interactions b/w different units/features of the software
+
+For testing API ENDPOINTS
+- setup a dummy db
