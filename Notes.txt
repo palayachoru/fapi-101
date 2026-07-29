@@ -217,5 +217,11 @@ UNIT TESTING:
 INTEGRATION TESTING:
 - test interactions b/w different units/features of the software
 
-For testing API ENDPOINTS
-- setup a dummy db
+STEPS FOR TESTING API ENDPOINTS
+  1. initialize a test db (sqlite)
+  2. add necessary fixtures
+  3. mock the dependency injection functions
+  4. create a test client
+  5. test each end points
+      - check the status code
+      - check the request data

@@ -66,7 +66,7 @@ def get_user(token: auth_user_depedency):
 
   return {"username": username, "id": usr_id, "is_admin": is_admin}
 
-
+user_dependency = Annotated[dict, Depends(get_user)]
 
 router = APIRouter(
   prefix = "/auth",           # all end points start with /auth
@@ -102,7 +102,7 @@ def user_login(db: db_dependency, form: auth_passwd_form):
 
 
 @router.get("/users")
-def user_list(db: db_dependency, user: dict = Depends(get_user)):
+def user_list(db: db_dependency, user: user_dependency):
   if not user or not user.get('is_admin'):
     raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid user")
 
