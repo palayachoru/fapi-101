@@ -42,6 +42,7 @@ def authenticate_user(username:str, passwd:str, db:Session):
 
   return luser
 
+
 def encode_jwt(user: User, expires_at: timedelta):
   """Create a JSON Web Token"""
   payload = {
@@ -51,6 +52,7 @@ def encode_jwt(user: User, expires_at: timedelta):
     "exp": datetime.now(timezone.utc) + expires_at
   }
   return jwt.encode(payload, SECRET, algorithm=ALGORITHM)
+
 
 def get_user(token: auth_user_depedency):
   try:
@@ -65,6 +67,8 @@ def get_user(token: auth_user_depedency):
     raise HTTPException(status_code=404, detail="Invalid User")
 
   return {"username": username, "id": usr_id, "is_admin": is_admin}
+
+
 
 user_dependency = Annotated[dict, Depends(get_user)]
 

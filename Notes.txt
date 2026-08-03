@@ -205,11 +205,6 @@ router = APIRouter(
 
 
 
-=========================== MYSQL/POSTGERS DB ==================================
-
-
-
-
 ==================== UNIT & INTEGRATION TESTING ================================
 UNIT TESTING:
 - test a feature/functional unit of a code
@@ -225,3 +220,7 @@ STEPS FOR TESTING API ENDPOINTS
   5. test each end points
       - check the status code
       - check the request data
+
+
+
+=========================== MYSQL/POSTGERS DB ==================================

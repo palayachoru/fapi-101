@@ -6,7 +6,7 @@ from starlette import status
 from main import app
 from models import Todo
 from routers.todo import get_db, get_user
-from .util import get_testdb, TestSessionLocal, add_task_to_db, clean_db
+from .util import *
 
 
 # ===== MOCKING DEPENDENCY INJECTION ========================================= #
@@ -24,6 +24,34 @@ def override_dep():
   # clear the orverride depenedency at teardown
   app.dependency_overrides.clear()
 
+
+# ===== ADDING SOME FIXTURES ================================================= #
+@pytest.fixture
+def add_task_to_db():
+  task1 = Todo(
+          title="taskA",
+          description="taskAA",
+          priority=3,
+          is_completed=False,
+          user_id=1
+        )
+
+  db = TestSessionLocal()
+  db.add(task1)
+  db.commit()
+  yield task1
+
+  # delete the takes from the DB
+  with test_engine.connect() as conn:
+    conn.execute(text("DELETE FROM todo;"))
+    conn.commit()
+
+
+@pytest.fixture
+def clean_db():
+  with test_engine.connect() as conn:
+    conn.execute(text("DELETE FROM todo;"))
+    conn.commit()
 
 
 # ===== TETSING BEGINS HERE ================================================== #
