@@ -224,3 +224,26 @@ STEPS FOR TESTING API ENDPOINTS
 
 
 =========================== MYSQL/POSTGERS DB ==================================
+Installation & setup
+1. install postgresql server + addons
+    sudo dnf install postgresql-server postgresql
+
+2. initialize the db
+    sudo postgresql-setup --initdb --unit postgresql
+
+3. start the postgresql server
+    sudo systemctl start postgresql
+
+4. setup the password (login in as postgres & connect to login psql)
+    sudo su - postgres
+    psql
+
+    =# alter user postgres with password 'xxxxxxxx';
+
+5. install pgadmin4
+    sudo dnf install pgadmin4   // this installs desktop & web version
+    Add Server -> add name -> host ip -> password (created above)
+
+6. connect postgresql to fastapi app
+    i. pip install psycopg2-binary
+    ii. update database.py file
