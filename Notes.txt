@@ -129,7 +129,7 @@ TODO TABLE:
 
 ROUTERS:
 - folder to place all the python files that contain API endpoint functions
-- use APIrouter class to create all API endpoints
+- use APIrouter class to create all API  endpoints
 - in main.py include all routes
 
 ONE-TO-MANY RELATIONSHIP: a user may have many todos
@@ -244,6 +244,41 @@ Installation & setup
     sudo dnf install pgadmin4   // this installs desktop & web version
     Add Server -> add name -> host ip -> password (created above)
 
-6. connect postgresql to fastapi app
+6. creatate DB and tables as needed
+
+7. connect postgresql to fastapi app
     i. pip install psycopg2-binary
     ii. update database.py file
+
+
+
+=========================== ALEMBIC ============================================
+Alembic
+- data migration tool, allow to modify database schemes while it has data in it
+- ie. it allow to create additional contents in the tables
+- to install:  pip install alembic
+
+1. to initialize alembic
+    alembic init <foldername>
+
+        alembic.ini - configuration file
+           i. update the sqlalchemy.url with the url used in database.py file
+
+        alembic/versions/env.py
+           i. import models
+           ii. update target_metadata
+
+2. to upgrade(add new col) DB create alembic revision file
+    a> need to create a new alembic file also called Alembic Revision
+    b> within the file add what kind of changes is needed
+
+    alembic revision -m "create phone number col on user table"
+        // this will create a file (alembic revision) to write the upgrade code
+        // each these revision (ie db changes) has unique revision id associated with it
+
+3. run upgrade to apply the revision to the database
+    alembic upgrade <revision_id>
+
+- similarly to downgrade, create a revision file and update the file
+- to apply the revision, run
+    alembic downgrade -1     // reverse the last revision applied
